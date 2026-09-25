@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .payment-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333333;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555555;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: #28a745;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .input-group {
+            flex: 1;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .pay-btn:hover {
+            background-color: #218838;
+        }
+
+        .secure-notice {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666666;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h2>Secure Payment</h2>
+        <form action="/process-payment" method="POST">
+            
+            <!-- Cardholder Name -->
+            <div class="input-group">
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="card-name" name="card_name" placeholder="John Doe" required>
+            </div>
+
+            <!-- Card Number -->
+            <div class="input-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="card_number" inputmode="numeric" pattern="[0-8\s]{13,19}" placeholder="4111 2222 3333 4444" required>
+            </div>
+
+            <!-- Expiry & CVC Row -->
+            <div class="row">
+                <div class="input-group">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
+                </div>
+                <div class="input-group">
+                    <label for="cvc">CVC / CVV</label>
+                    <input type="password" id="cvc" name="cvc" inputmode="numeric" pattern="[0-9]{3,4}" placeholder="123" maxlength="4" required>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="pay-btn">Pay Now</button>
+
+            <!-- Security Footer -->
+            <div class="secure-notice">
+                🔒 SSL Encrypted & Secure Connection
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
+
